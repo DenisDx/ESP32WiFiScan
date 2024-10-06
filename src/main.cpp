@@ -181,7 +181,11 @@ void Xterm::setCharacterAttributes(byte m){
     _stream->print(cmd);
 }
 
+#if ARDUINO_USB_CDC_ON_BOOT //Serial used for USB CDC
+Xterm xterm=Xterm(&Serial0);
+#else
 Xterm xterm=Xterm(&Serial);
+#endif
 //----------------------------------------------------------------------------------
 bool writeScreen();
 bool writeScreen1(String ssid);
